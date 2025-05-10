@@ -378,7 +378,7 @@ impl Paths {
         // one. In the latter case, we need to discover the relative part from the project root.
         let mut call_site_path = proc_macro::Span::call_site()
             .local_file()
-            .unwrap_or_default();
+            .expect("Unable to get call site path");
         call_site_path.set_extension("");
         if call_site_path.is_relative() {
             return call_site_path.to_path_buf();
